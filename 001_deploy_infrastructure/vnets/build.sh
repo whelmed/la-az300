@@ -114,7 +114,7 @@ az vm create \
 
 
 # Fetch the private IP of the web server
-WEB_PRIVATE_IP=$(az vm list-ip-addresses -g az300-gateway-group -n web1 --query "[0].virtualMachine.network.privateIpAddresses[0]" | sed 's/"//g')
+WEB_PRIVATE_IP=$(az vm list-ip-addresses -g $RESOURCE_GROUP -n web1 --query "[0].virtualMachine.network.privateIpAddresses[0]" | sed 's/"//g')
 
 # Create a new Application Gateway
 az network application-gateway create \
