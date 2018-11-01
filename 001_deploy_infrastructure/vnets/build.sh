@@ -220,19 +220,20 @@ az vm create \
   --custom-data           /tmp/dev.txt
 
 
+WEB_VNET_ID=$(az network vnet show -g $RESOURCE_GROUP -n $VNET_NAME -o tsv --query id)
 # Peer the two networks
 az network vnet peering create \
   -g                  $DEV_RESOURCE_GROUP \
   -n                  DevToWebPeering \
   --vnet-name         $DEV_VNET_NAME \
-  --remote-vnet       $VNET_NAME \
+  --remote-vnet       $WEB_VNET_ID \
   --allow-vnet-access
 
 
-WEB_VNET_ID=$(az network vnet show -g DevelopmentNetworkingGroup -n dev-web-application-network -o tsv --query id)
+DEV_VNET_ID=$(az network vnet show -g $DEV_RESOURCE_GROUP -n $DEV_VNET_NAME -o tsv --query id)
 az network vnet peering create \
   -g                  $RESOURCE_GROUP \
   -n                  WebToDevPeering \
   --vnet-name         $VNET_NAME \
-  --remote-vnet       $WEB_VNET_ID \
+  --remote-vnet       $DEV_VNET_ID \
   --allow-vnet-access
