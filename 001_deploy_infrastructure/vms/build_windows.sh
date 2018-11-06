@@ -38,13 +38,16 @@ az network vnet subnet update \
   --network-security-group  $NSG
 
 
+# Create the public IP
+az network public-ip create -g $RESOURCE_GROUP -n demo-windows-ip
 # Create a NIC for the web server VM.
 az network nic create \
   --resource-group          $RESOURCE_GROUP \
   --name                    vm-demo-nic \
   --vnet-name               $VNET_NAME \
   --subnet                  $SUBNET \
-  --network-security-group  $NSG 
+  --network-security-group  $NSG \
+  --public-ip-address       demo-windows-ip
 
 
 # Create a Web Server VM in the front-end subnet.
@@ -52,7 +55,7 @@ az vm create \
   --resource-group        $RESOURCE_GROUP \
   --authentication-type   password \
   --name                  $VM_NAME \
-  --nics                  web-nic  \
+  --nics                  vm-demo-nic \
   --image                 win2016datacenter \
   --admin-username        bobross \
   --admin-password        $VM_PASSWORD 
@@ -63,5 +66,5 @@ az vm extension set \
   --vm-name $VM_NAME \
   --name CustomScriptExtension \
   --publisher Microsoft.Compute \
-  --settings '{"fileUris": ["https://github.com/myname/DSCConfig/blob/master/pester.ps1"], "commandToExecute":"powershell -ExecutionPolicy Unrestricted -File pester.ps1"}' \
+  --settings '{"fileUris": ["https://raw.githubusercontent.com/whelmed/la-az300/master/001_deploy_infrastructure/vms/web_bootstrap.ps1"], "commandToExecute":"powershell -ExecutionPolicy Unrestricted -File web_bootstrap.ps1"}' \
 
