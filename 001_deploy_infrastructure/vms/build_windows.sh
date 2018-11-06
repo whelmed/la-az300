@@ -46,7 +46,7 @@ az network nsg rule create \
   --source-address-prefixes       '*' \
   --destination-address-prefixes  '*' \
   --destination-port-ranges       80 \
-  --direction                     Incoming \
+  --direction                     Inbound \
   --access                        Allow \
   --protocol                      Tcp 
 
