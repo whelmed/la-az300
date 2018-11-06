@@ -38,6 +38,19 @@ az network vnet subnet update \
   --network-security-group  $NSG
 
 
+az network nsg rule create \
+  -g                              $RESOURCE_GROUP \
+  --nsg-name                      $NSG \
+  -n                              WebTrafficVMDemo \
+  --priority                      100 \
+  --source-address-prefixes       '*' \
+  --destination-address-prefixes  '*' \
+  --destination-port-ranges       80 \
+  --direction                     Incoming \
+  --access                        Allow \
+  --protocol                      Tcp 
+
+
 # Create the public IP
 az network public-ip create -g $RESOURCE_GROUP -n demo-windows-ip
 # Create a NIC for the web server VM.
