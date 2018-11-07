@@ -79,5 +79,4 @@ az vm extension set \
   --vm-name $VM_NAME \
   --name CustomScriptExtension \
   --publisher Microsoft.Compute \
-  --settings '{"fileUris": ["https://raw.githubusercontent.com/whelmed/la-az300/master/001_deploy_infrastructure/vms/web_bootstrap.ps1"], "commandToExecute":"powershell -ExecutionPolicy Unrestricted -File web_bootstrap.ps1"}' \
-
+  --settings '{"fileUris": ["https://raw.githubusercontent.com/whelmed/la-az300/master/001_deploy_infrastructure/vms/web_bootstrap.ps1"], "commandToExecute":"powershell -ExecutionPolicy Unrestricted -File web_bootstrap.ps1"}' 
