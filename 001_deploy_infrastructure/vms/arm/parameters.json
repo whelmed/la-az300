@@ -68,7 +68,7 @@
             "value": null
         },
         "customData": {
-            "value": "c3VkbyBhcHQtZ2V0IHVwZGF0ZSAteQpzdWRvIGFwdC1nZXQgaW5zdGFsbCBhcGFjaGUyIC15"
+            "value": "I2Nsb3VkLWNvbmZpZwpwYWNrYWdlX3VwZ3JhZGU6IHRydWUKcGFja2FnZXM6CiAgLSBhcGFjaGUy"
         },
         "diagnosticsStorageAccountName": {
             "value": "rmemplatediag"
